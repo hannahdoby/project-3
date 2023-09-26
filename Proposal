@@ -7,3 +7,11 @@ Ideas:
       - Active Life
 
 Use these ratings to show the top 3(?) cities in each continent for travel destinations
+
+Show a dropdown with the cites to allow the user to select up to 3-4 cities to compare, allow selection of the subcategories to be explores (hotels, restaurants, etc.)
+
+Click on the markers to show name and rating and other Yelp info
+
+Display bar charts to visualize ratings of the selected categories
+
+Focus on one specific price range, to lessen the amount of data and pings to the API
