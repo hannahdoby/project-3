@@ -1,0 +1,7 @@
+API to use: https://docs.developer.yelp.com/docs/fusion-intro
+Ideas:
+  - Determine popular vacation spots by looking at reviews for various categories of businesses such as:
+      - Food
+      - Hotels & Travel
+      - Arts/Entertainment
+      - Active Life
