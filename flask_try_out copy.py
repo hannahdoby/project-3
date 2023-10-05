@@ -1,5 +1,5 @@
 # Import Flask and dependencies
-from flask import Flask,jsonify
+from flask import Flask,jsonify, render_template
 import requests
 import json
 
@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 # Define Route
 @app.route("/")
-def index():
-    return render_template("index.html")
+# def index_js():
+#     render_template("/js/index.js")
 
 # Call out url
 def home():
@@ -31,7 +31,7 @@ def home():
     # # the reputation 
     # businessName = data['businesses'][0]['name']
 
-    return Jresponse
+    return data
 
 if __name__ == "__main__":
     app.run(debug = True)
