@@ -1,124 +1,16 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-<style>
-    html, body, #map-container {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
+<html lang="en">
 
-    #map {
-      width: 100%;
-      height: 100%;
-    }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedded Map</title>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
 
-    #location-dropdown {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      background-color: white;
-      padding: 10px;
-      border-radius: 5px;
-    }
+</head>
 
-    .stations, .stations svg {
-      position: absolute;
-    }
+<body>
+  <iframe src="map.html" width="800" height="600" frameborder="0"></iframe>
+</body>
 
-    .stations svg {
-      width: 60px;
-      height: 20px;
-      padding-right: 100px;
-      font: 10px sans-serif;
-    }
-
-    .stations circle {
-      fill: brown;
-      stroke: black;
-      stroke-width: 1.5px;
-    }
-</style>
-<div  id="map-container">
-  <div id="location-dropdown">
-    <label for="location-selector">Select Location:</label>
-    <select id="location-selector">
-      <option value="stations.json">Stations</option>
-      <option value="Dallas_food.json">Dallas Food</option>
-      <option value="Dallas_hotels.json">Dallas Hotels</option>
-      <option value="SanAntonio_food.json">San Antonio Food</option>
-      <option value="SanAntonio_hotels.json">San Antonio Hotels</option>
-      <option value="SanDiego_food.json">San Diego Food</option>
-      <option value="SanDiego_hotels.json">San Diego Hotels</option>
-      <option value="Chicago_food.json">Chicago Food</option>
-      <option value="Chicago_hotels.json">Chicago Hotels</option>
-      <option value="LosAngeles_food.json">Los Angeles Food</option>
-      <option value="LosAngeles_hotels.json">Los Angeles Hotels</option>      
-    </select>                
-</div>
-<script src="//maps.google.com/maps/api/js?sensor=true"></script>
-<script src="//d3js.org/d3.v3.min.js"></script>
-<script>
-
-// Create the Google Map…
-var map = new google.maps.Map(d3.select("#map").node(), {
-  zoom: 4,
-  center: new google.maps.LatLng(38, 97),
-  mapTypeId: google.maps.MapTypeId.TERRAIN
-});
-
-// Load the station data. When the data comes back, create an overlay.
-d3.json("stations.json", function(error, data) {
-  if (error) throw error;
-
-  var overlay = new google.maps.OverlayView();
-
-  // Add the container when the overlay is added to the map.
-  overlay.onAdd = function() {
-    var layer = d3.select(this.getPanes().overlayLayer).append("div")
-        .attr("class", "stations");
-
-    // Draw each marker as a separate SVG element.
-    // We could use a single SVG, but what size would it have?
-    overlay.draw = function() {
-      var projection = this.getProjection(),
-          padding = 10;
-
-      var marker = layer.selectAll("svg")
-          .data(d3.entries(data))
-          .each(transform) // update existing markers
-        .enter().append("svg")
-          .each(transform)
-          .attr("class", "marker");
-
-      // Add a circle.
-      marker.append("circle")
-          .attr("r", 4.5)
-          .attr("cx", padding)
-          .attr("cy", padding);
-
-      // Add a label.
-      marker.append("text")
-          .attr("x", padding + 7)
-          .attr("y", padding)
-          .attr("dy", ".31em")
-          .text(function(d) { return d.key; });
-
-      function transform(d) {
-        d = new google.maps.LatLng(d.value[1], d.value[0]);
-        d = projection.fromLatLngToDivPixel(d);
-        return d3.select(this)
-            .style("left", (d.x - padding) + "px")
-            .style("top", (d.y - padding) + "px");
-      }
-    };
-  };
-
-  // Bind our overlay to the map…
-  overlay.setMap(map);
-});
-
-</script>
+</html>
