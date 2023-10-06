@@ -2,9 +2,12 @@
 from flask import Flask,jsonify, render_template
 import requests
 import json
+from jl_apiKey import api_key
+from flask_cors import CORS
 
 # Create App
 app = Flask(__name__)
+CORS(app)
 
 # Define Route
 @app.route("/")
@@ -16,7 +19,8 @@ def home():
     url = "https://api.yelp.com/v3/businesses/search?location=NYC&categories=hotels&sort_by=best_match&limit=20"
     headers = {
     "accept": "application/json",
-    "Authorization": "Bearer CHjD6kmFOME90In-E5XCPX4j-bRFI8XTrhXpC4mSkiUPM5rEYHz0Ny_NDkuBFvliTm2yaGMLW-h4NUsjLtyakj8wgZMT48_vJQP8_RccUQ3jgR2mt6pUW9QwYmQTZXYx"}
+    "Authorization": f"Bearer {api_key}"
+    }
 
     try: 
         uResponse = requests.get(url, headers=headers)
