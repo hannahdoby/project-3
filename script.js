@@ -2,40 +2,61 @@ document.addEventListener("DOMContentLoaded", function() {
   var locationSelector = document.getElementById("location-selector");
   var categorySelector = document.getElementById("category-selector");
   var map = L.map('map').setView([38, -97], 4);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
   var markers = L.layerGroup().addTo(map);
+
+  // Coordinates of cities
+  var cityCoordinates = {
+    "Dallas": [32.7767, -96.7970],
+    "SanAntonio": [29.4241, -98.4936],
+    "SanDiego": [32.7157, -117.1611],
+    "Chicago": [41.8781, -87.6298],
+    "LosAngeles": [34.0522, -118.2437],
+    "NewYorkCity": [40.7128, -74.0060],
+    "Phoenix": [33.4484, -112.0740],
+    "Austin": [30.2500, -97.7500],
+    "Houston": [29.7604, -95.3698],
+    "Philadelphia": [39.9526, -75.1652]
+  };
+
+  // Map category names to marker colors
+  var categoryColors = {
+    "Hotels": "brown",
+    "Food": "green"
+  };
+
+  var apiUrl = 'http://localhost:5000/api/data';
 
   function updateMap() {
     var selectedLocation = locationSelector.value;
     var selectedCategory = categorySelector.value;
-    var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json";
+    var markerColor = categoryColors[selectedCategory];
 
-    d3.json(fileName, function(error, data) {
-      if (error) {
-        console.error("Error loading data:", error);
-        return; // Exit the function early if there's an error
-      }
+    var apiUrl = 'http://localhost:5000/api/data'; // Define API endpoint URL
+    var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json"; // Generate file name based on selected location and category
 
+    map.setView(cityCoordinates[selectedLocation], 10);
+    
+    // Fetch data from the Flask API
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
       markers.clearLayers();
+      
+      data.forEach(function(d) {
+        var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
+          radius: 5,
+          fillColor: markerColor,
+          color: "black",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
+        
+        markers.addLayer(marker);
+      });
 
-      if (data && data.length > 0) {
-        data.forEach(function(d) {
-          var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
-            radius: 5,
-            fillColor: "brown",
-            color: "black",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-          }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
-          markers.addLayer(marker);
-        });
-
-        map.fitBounds(markers.getBounds());
-      } else {
-        console.log("No data available for the selected location and category.");
-      }
+      map.fitBounds(markers.getBounds());
     });
   }
 
