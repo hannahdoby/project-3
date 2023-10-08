@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <title>Interactive Map</title>
+  <style>
+    html,
+    body,
+    #map {
+      width: 80%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="project-3/style.css">
+<script src="project-3/script.js"></script>
+</head>
+
+<body>
+
+  <select id="location-selector">
+    <option value="Dallas">Dallas</option>
+    <option value="SanAntonio">San Antonio</option>
+    <option value="SanDiego">San Diego</option>
+    <option value="LosAngeles">Los Angeles</option>
+    <option value="Chicago">Chicago</option>
+    <option value="NewYorkCity">New York City</option>
+    <option value="Phoenix">Phoenix</option>
+    <option value="Philadelphia">Philadelphia</option>
+    <option value="Houston">Houston</option>
+    <option value="Austin">Austin</option>
+  </select>
+  <select id="category-selector">
+    <option value="Food">Food</option>
+    <option value="Hotels">Hotels</option>
+  </select>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="script.js"></script>
+</body>

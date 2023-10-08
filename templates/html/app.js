@@ -25,7 +25,7 @@ init();
 
 function chart(cityID){d3.json(queryUrl).then(function (data){
   let cityData = data
-  result = cityData.filter(cityID[0].location.city)
+  result = cityData.filter(data[0][0].location.city)
   console.log(result);
   //   let sample_values = result.sample_values
   //   let otu_ids = result.otu_ids
