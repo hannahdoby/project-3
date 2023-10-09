@@ -5,7 +5,14 @@ let queryUrl = "http://127.0.0.1:5000/";
 d3.json(queryUrl).then(function (data) {
   // Once we get a response, send the data.features object to the createFeatures function.
   console.log(data);
+  let names = data[0].map(function (row){
+    return row.name
+    console.log(names);
+  }
+
+  )
 });
+
 
 
 
@@ -14,7 +21,7 @@ function init(){d3.json(queryUrl).then(function(data){
 
   // Plot initital plot 
   let data1 = {
-    x:
+    x: data[0]
     y:
     type:'bar'
 
@@ -29,7 +36,7 @@ function init(){d3.json(queryUrl).then(function(data){
      Plotly.newPlot('myChart2', data2)
 })}
   // Call updatePlotly() when a change takes place to the DOM
-  d3.selectAll("#location-selector").on("change", updatePlotly);
+  d3.selectAll("#location-selector").on("change", updatePlot);
 
   function updatePlot(){d3.json(queryUrl).then(function(data){
   let dropdownCity = d3.select('#location-selector');
