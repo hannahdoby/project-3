@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # Call out url
 def home():
-    url = "https://api.yelp.com/v3/businesses/search?location=NYC+LA&term=hotel,food&sort_by=best_match&limit=20"
+    url = "https://api.yelp.com/v3/businesses/search?location=NYC&term=food&sort_by=best_match&limit=20"
     headers = {
     "accept": "application/json",
     "Authorization": "Bearer CHjD6kmFOME90In-E5XCPX4j-bRFI8XTrhXpC4mSkiUPM5rEYHz0Ny_NDkuBFvliTm2yaGMLW-h4NUsjLtyakj8wgZMT48_vJQP8_RccUQ3jgR2mt6pUW9QwYmQTZXYx"}
