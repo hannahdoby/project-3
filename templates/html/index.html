@@ -2,50 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project 3 </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="project-3/style.css">
+  <script src="project-3/script.js"></script>
+  <title>Index</title>
+  <style id="compiled-css" type="text/css">
+
+    #myChart1, #myChart2 {
+       width: 800px;
+       height: 760px;
+    }
+    .label {/*from  w  ww. ja  v  a 2  s  .  co  m*/
+       text-align: center;
+       width: 600px;
+       font-size: 20px;
+       font-weight: bold;
+       margin: 20px;
+    }
+    .chart_container {
+       float: left;
+    }
+
+    #map {
+      width: 1000px;
+      height: 850px;
+    }
+
+    .map_container{
+      float:right;
+    }
+    </style> 
+
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12 jumbotron text-center">
-            <h1>Major Citites Hotels and Restaurants</h1>
-            <p>Use the interactive charts below to explore the dataset</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="well">
-              <h5>Test Subject ID No.:</h5>
-              <select id="selDataset" onchange="optionChanged(this.value)"></select>
-            </div>
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">Demographic Info</h3>
-              </div>
-              <div id="sample-metadata" class="panel-body"></div>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div id="plot"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="bubble"></div>
-          </div>
-        </div>
-      </div>
-  <!-- D3 JavaScript -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <!-- plot JavaScript -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <!-- Our JavaScript -->
-    <script src="app.js"></script>
-</body>
+  <div id="b"></div>
+  <div id="map_section">
+  <div class="map_container">
+  <select id="location-selector">
+    <option value="Dallas">Dallas</option>
+    <option value="SanAntonio">San Antonio</option>
+    <option value="SanDiego">San Diego</option>
+    <option value="LosAngeles">Los Angeles</option>
+    <option value="Chicago">Chicago</option>
+    <option value="NewYorkCity">New York City</option>
+    <option value="Phoenix">Phoenix</option>
+    <option value="Philadelphia">Philadelphia</option>
+    <option value="Houston">Houston</option>
+    <option value="Austin">Austin</option>
+  </select>
+  <select id="category-selector">
+    <option value="Food">Food</option>
+    <option value="Hotels">Hotels</option>
+  </select>
+  <div id="map"></div>
+</div>
+</div>
 
-</html>
+
+  <div id="a"></div>
+  <div id="aligned">
+      <div class="label">
+          Hotels and Food in Selected Citites
+      </div>
+      <div class="chart_container"> 
+          <canvas id="myChart1"></canvas> 
+       </div> 
+       <div class="chart_container"> 
+          <canvas id="myChart2"></canvas> 
+       </div> 
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app_v1.js"></script>
+</body>
