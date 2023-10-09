@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
     "Food": "green"
   };
 
-  var apiUrl = 'http://localhost:5000/';
 
   function updateMap() {
     var selectedLocation = locationSelector.value;
@@ -33,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var markerColor = categoryColors[selectedCategory];
 
     var apiUrl = 'http://localhost:5000/'; // Define API endpoint URL
-    var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json"; // Generate file name based on selected location and category
+   // var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json"; // Generate file name based on selected location and category
 
     map.setView(cityCoordinates[selectedLocation], 10);
     
@@ -51,8 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
           weight: 1,
           opacity: 1,
           fillOpacity: 0.8
-        }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
+        });
         
+        marker.bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
         markers.addLayer(marker);
       });
 
