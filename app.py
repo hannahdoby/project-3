@@ -10,48 +10,48 @@ CORS(app)
 
 @app.route('/')
 def index():
-    la_food = json.load(open('JSON/LosAngeles_food.json'))
-    la_hotels = json.load(open('JSON/LosAngeles_hotels.json'))
-    nyc_food = json.load(open('JSON/NYC_food.json'))
-    nyc_hotels = json.load(open('JSON/NYC_hotels.json'))
-    cho_food = json.load(open('JSON/Chicago_food.json'))
-    cho_hotels = json.load(open('JSON/Chicago_hotels.json'))
-    santo_food = json.load(open('JSON/SanAntonio_food.json'))
-    santo_hotels = json.load(open('JSON/SanAntonio_hotels.json'))
-    sandi_food = json.load(open('JSON/SanDiego_food.json'))
-    sandi_hotels = json.load(open('JSON/SanDiego_hotels.json'))
-    dalla_food = json.load(open('JSON/Dallas_food.json'))
-    dalla_hotels = json.load(open('JSON/Dallas_hotels.json'))
-    austin_food = json.load(open('JSON/Austin_food.json'))
-    austin_hotels = json.load(open('JSON/Austin_hotels.json'))
-    phx_food = json.load(open('JSON/Phoenix_food.json'))
-    phx_hotels = json.load(open('JSON/Phoenix_hotels.json'))
-    phila_food = json.load(open('JSON/Philadelphia_food.json'))
-    phila_hotels = json.load(open('JSON/Philadelphia_hotels.json'))
-    houston_food = json.load(open('JSON/Houston_food.json'))
-    houston_hotels = json.load(open('JSON/Houston_hotels.json'))
+    LosAngeles_food = json.load(open('JSON/LosAngeles_food.json'))
+    LosAngeles_hotels = json.load(open('JSON/LosAngeles_hotels.json'))
+    NYC_food = json.load(open('JSON/NYC_food.json'))
+    NYC_hotels = json.load(open('JSON/NYC_hotels.json'))
+    Chicago_food = json.load(open('JSON/Chicago_food.json'))
+    Chicago_hotels = json.load(open('JSON/Chicago_hotels.json'))
+    SanAntonio_food = json.load(open('JSON/SanAntonio_food.json'))
+    SanAntonio_hotels = json.load(open('JSON/SanAntonio_hotels.json'))
+    SanDiego_food = json.load(open('JSON/SanDiego_food.json'))
+    SanDiego_hotels = json.load(open('JSON/SanDiego_hotels.json'))
+    Dallas_food = json.load(open('JSON/Dallas_food.json'))
+    Dallas_hotels = json.load(open('JSON/Dallas_hotels.json'))
+    Austin_food = json.load(open('JSON/Austin_food.json'))
+    Austin_hotels = json.load(open('JSON/Austin_hotels.json'))
+    Phoenix_food = json.load(open('JSON/Phoenix_food.json'))
+    Phoenix_hotels = json.load(open('JSON/Phoenix_hotels.json'))
+    Philadelphia_food = json.load(open('JSON/Philadelphia_food.json'))
+    Philadelphia_hotels = json.load(open('JSON/Philadelphia_hotels.json'))
+    Houston_food = json.load(open('JSON/Houston_food.json'))
+    Houston_hotels = json.load(open('JSON/Houston_hotels.json'))
 
     return jsonify({
-        "la_food": la_food,
-        "la_hotels": la_hotels,
-        "nyc_food": nyc_food,
-        "nyc_hotels": nyc_hotels,
-        "cho_food": cho_food,
-        "cho_hotels": cho_hotels,
-        "santo_food": santo_food,
-        "santo_hotels": santo_hotels,
-        "sandi_food": sandi_food,
-        "sandi_hotels": sandi_hotels,
-        "dalla_food": dalla_food,
-        "dalla_hotels": dalla_hotels,
-        "austin_food": austin_food,
-        "austin_hotels": austin_hotels,
-        "phx_food": phx_food,
-        "phx_hotels": phx_hotels,
-        "phila_food": phila_food,
-        "phila_hotels": phila_hotels,
-        "houston_food": houston_food,
-        "houston_hotels": houston_hotels
+        "LosAngeles_food": LosAngeles_food,
+        "LosAngeles_hotels": LosAngeles_hotels,
+        "NYC_food": NYC_food,
+        "NYC_hotels": NYC_hotels,
+        "Chicago_food": Chicago_food,
+        "Chicago_hotels": Chicago_hotels,
+        "SanAntonio_food": SanAntonio_food,
+        "SanAntonio_hotels": SanAntonio_hotels,
+        "SanDiego_food": SanDiego_food,
+        "SanDiego_hotels": SanDiego_hotels,
+        "Dallas_hotels": Dallas_hotels,
+        "Dallas_food": Dallas_food,
+        "Austin_food": Austin_food,
+        "Austin_hotels": Austin_hotels,
+        "Phoenix_food": Phoenix_food,
+        "Phoenix_hotels": Phoenix_hotels,
+        "Philadelphia_food": Philadelphia_food,
+        "Philadelphia_hotels": Philadelphia_hotels,
+        "Houston_food": Houston_food,
+        "Houston_hotels": Houston_hotels
     })
 
 if __name__ == '__main__':

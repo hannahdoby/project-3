@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var markerColor = categoryColors[selectedCategory];
 
     var apiUrl = 'http://localhost:5000/'; // Define API endpoint URL
-   // var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json"; // Generate file name based on selected location and category
+    var fileName = selectedLocation + "_" + selectedCategory + ".json"; // Generate file name based on selected location and category
 
     map.setView(cityCoordinates[selectedLocation], 10);
     
