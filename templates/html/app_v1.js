@@ -7,13 +7,14 @@ const ctx1 = document.getElementById('myChart1');
             labels: ['New York City', 'Los Angeles', 'Phoenix', 'Chicago', 'San Antonio', 'San Diego', 'Dallas', 'Philadelphia' , 'Houston' ,'Austin'],
             datasets: [{
               label: 'Hotels Ratings',
-              data: [12, 19, 3, 5, 2, 3],
+              data: [5,4,4.5,4,4,4,4,4,4,4,4],
               borderWidth: 1
             }]
           },
           options: {
-            maintainAspectRatio :false,
-            responsive : true,
+
+
+
             scales: {
               y: {
                 beginAtZero: true
@@ -30,13 +31,14 @@ const ctx1 = document.getElementById('myChart1');
             labels: ['New York City', 'Los Angeles', 'Phoenix', 'Chicago', 'San Antonio', 'San Diego', 'Dallas', 'Philadelphia' , 'Houston' ,'Austin'],
             datasets: [{
               label: 'Foods Ratings',
-              data: [12, 19, 3, 5, 2, 3],
+              data: [5,4,4.5,4,4,4,4,4,4,4,4],
               borderWidth: 1
             }]
           },
           options: {
-            maintainAspectRatio : false ,
-            responsive: true,
+
+
+
             scales: {
               y: {
                 beginAtZero: true

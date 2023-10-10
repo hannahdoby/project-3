@@ -6,8 +6,7 @@ d3.json(queryUrl).then(function (data) {
   // Once we get a response, send the data.features object to the createFeatures function.
   console.log(data);
   let names = data[0].map(function (row){
-    return row.name
-    console.log(names);
+
   }
 
   )
