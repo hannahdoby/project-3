@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     "Food": "green"
   };
 
-  var apiUrl = 'http://localhost:5000/api/data';
+  var apiUrl = 'http://localhost:5000/';
 
   async function fetchMarkerData(apiUrl) {
     const response = await fetch(apiUrl);
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
         radius: 5,
         fillColor: markerColor,
-        color: "black",
+        // markerColor: "black",
         weight: 1,
         opacity: 1,
         fillOpacity: 0.8
