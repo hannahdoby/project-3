@@ -34,35 +34,35 @@ document.addEventListener("DOMContentLoaded", function() {
     var apiUrl = 'http://localhost:5000/'; // Define API endpoint URL
     var fileName = selectedLocation + "_" + selectedCategory + ".json"; // Generate file name based on selected location and category
 
-    map.setView(cityCoordinates[selectedLocation], 10);
+    map.setView(cityCoordinates[selectedLocation], 11);
     
-    // Fetch data from the Flask API
-    fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      markers.clearLayers();
-      
-      data.forEach(function(d) {
-        var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
-          radius: 5,
-          fillColor: markerColor,
-          color: "black",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
+        // Fetch data from the Flask API
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          markers.clearLayers();
+          
+          data.forEach(function(d) {
+            var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
+              radius: 5,
+              fillColor: markerColor,
+              color: "black",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.8
+            });
+            
+            marker.bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
+            markers.addLayer(marker);
+          });
+
+          map.fitBounds(markers.getBounds());
         });
-        
-        marker.bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
-        markers.addLayer(marker);
-      });
+      }
 
-      map.fitBounds(markers.getBounds());
+      locationSelector.addEventListener("change", updateMap);
+      categorySelector.addEventListener("change", updateMap);
+
+      // Initial load of data for the default location and category
+      updateMap(selectedLocation, selectedCategory);
     });
-  }
-
-  locationSelector.addEventListener("change", updateMap);
-  categorySelector.addEventListener("change", updateMap);
-
-  // Initial load of data for the default location and category
-  updateMap();
-});

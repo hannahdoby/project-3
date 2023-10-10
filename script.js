@@ -27,14 +27,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var apiUrl = 'http://localhost:5000/api/data';
 
-  function fetchMarkerData(apiUrl) {
-    return fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      });
+  async function fetchMarkerData(apiUrl) {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
   }
 
   function createMarkers(data, markerColor) {
