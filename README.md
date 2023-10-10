@@ -6,10 +6,10 @@ When planning your next trip, it's easy to know where you want to go next. The h
 - See the locations of each marker on the maps so you know exactly where you'll be!
 
 ### Running the code ###
-- Open {flask app file name} and run the code, if you would like to view the raw data, you can open it locally on browser by selecting the provided url
-- With the flask app running, migrate to index.html, right click within the code, and select Open With Live Server
-- Once opened in your browser, you will be presented with a dropdown menu, a map, and a graph
-- To change the city or category displayed, select the choice from the dropdown menu
+1. Open app.py and run the code, if you would like to view the raw data, you can open it locally on browser by selecting the provided url
+2. With the flask app running, migrate to index.html, right click within the code, and select Open With Live Server
+3. Once opened in your browser, you will be presented with a dropdown menu, a map, and a graph
+4. To change the city or category displayed, select the choice from the dropdown menu
 ### Resources ###
 - API: https://docs.developer.yelp.com/docs/fusion-intro
 - Used to retrieve top 10 populated cities in the US: https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population
