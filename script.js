@@ -27,36 +27,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var apiUrl = 'http://localhost:5000/api/data';
 
+  function fetchMarkerData(apiUrl) {
+    return fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
+  }
+
+  function createMarkers(data, markerColor) {
+    markers.clearLayers();
+    data.forEach(function(d) {
+      var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
+        radius: 5,
+        fillColor: markerColor,
+        color: "black",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
+      markers.addLayer(marker);
+    });
+    map.fitBounds(markers.getBounds());
+  }
+
   function updateMap() {
     var selectedLocation = locationSelector.value;
     var selectedCategory = categorySelector.value;
     var markerColor = categoryColors[selectedCategory];
 
-    var apiUrl = 'http://localhost:5000/api/data'; // Define API endpoint URL
-    var fileName = selectedLocation.toLowerCase() + "_" + selectedCategory.toLowerCase() + ".json"; // Generate file name based on selected location and category
-
     map.setView(cityCoordinates[selectedLocation], 10);
     
     // Fetch data from the Flask API
-    fetch(apiUrl)
-    .then(response => response.json())
+    fetchMarkerData(apiUrl)
     .then(data => {
-      markers.clearLayers();
-      
-      data.forEach(function(d) {
-        var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
-          radius: 5,
-          fillColor: markerColor,
-          color: "black",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
-        }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
-        
-        markers.addLayer(marker);
-      });
-
-      map.fitBounds(markers.getBounds());
+      createMarkers(data, markerColor);
+    })
+    .catch(error => {
+      console.error('Error fetching marker data:', error);
     });
   }
 
