@@ -37,18 +37,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function createMarkers(data, markerColor) {
     markers.clearLayers();
-    data.forEach(function(d) {
-      var marker = L.circleMarker([d.coordinates[0], d.coordinates[1]], {
-        radius: 5,
-        fillColor: markerColor,
-        // markerColor: "black",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-      }).bindPopup(d.key + "<br>Address: " + d.address + "<br>Rating: " + d.review + "<br>Review Count: " + d.reviewCount);
-      markers.addLayer(marker);
-    });
-    map.fitBounds(markers.getBounds());
+    for (let i=0; i < data.food.length; i++){
+      let businesses = data.food[i].businesses;
+      for (let j=0; j < businesses.length; j++){
+        let location = businesses[j].coordinates
+        let name = businesses[j].name
+        let rating = businesses[j].rating
+        let reviewCount = businesses[j].review_count
+        let address= businesses[j].location.display_addresses
+        if (location) {
+          let marker = L.circleMarker([location.latitude, location.longitude],{
+            radius: 5,
+          fillColor: markerColor,
+          // markerColor: "black",
+           weight: 1,
+           opacity: 1,
+          fillOpacity: 0.8
+          }).bindPopup(name+"<br>Address: " + address + "<br>Rating: " + rating + "<br>Review Count: " + reviewCount);
+          markers.addLayer(marker);
+
+        }
+      }
+    }
   }
 
   function updateMap() {
