@@ -32,27 +32,11 @@ def index():
     Houston_Hotels = json.load(open('JSON/Houston_hotels.json'))
 
     return jsonify({
-        "Los_Angeles_Food": LosAngeles_Food,
-        "Los_Angeles_Hotels": LosAngeles_Hotels,
-        "New_York_City_Food": NewYorkCity_Food,
-        "New_York_City_Hotels": NewYorkCity_Hotels,
-        "Chicago_Food": Chicago_Food,
-        "Chicago_Hotels": Chicago_Hotels,
-        "San_Antonio_Food": SanAntonio_Food,
-        "San_Antonio_Hotels": SanAntonio_Hotels,
-        "San_Diego_Food": SanDiego_Food,
-        "San_Diego_Hotels": SanDiego_Hotels,
-        "Dallas_Hotels": Dallas_Hotels,
-        "Dallas_Food": Dallas_Food,
-        "Austin_Food": Austin_Food,
-        "Austin_Hotels": Austin_Hotels,
-        "Phoenix_Food": Phoenix_Food,
-        "Phoenix_Hotels": Phoenix_Hotels,
-        "Philadelphia_Food": Philadelphia_Food,
-        "Philadelphia_Hotels": Philadelphia_Hotels,
-        "Houston_Food": Houston_Food,
-        "Houston_Hotels": Houston_Hotels
+        'food':[LosAngeles_Food,NewYorkCity_Food,Chicago_Food,SanAntonio_Food,SanDiego_Food,Dallas_Food,Austin_Food,Phoenix_Food,Philadelphia_Food,Houston_Food],
+        'hotels':[LosAngeles_Hotels, NewYorkCity_Hotels, Chicago_Hotels,SanAntonio_Hotels,SanDiego_Hotels,Dallas_Hotels,Austin_Hotels,Phoenix_Hotels,Philadelphia_Hotels,Houston_Hotels]
     })
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
