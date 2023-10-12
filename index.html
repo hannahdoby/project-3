@@ -1,16 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+<base href="/">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embedded Map</title>
-  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <title>Yelp Ratings by City/Attraction</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 
+  <link rel="stylesheet" href="style.css">
+  <style id="compiled-css" type="text/css">
+  
+
+
+    #myChart1 {
+       width: 600px;
+       height: 700px;
+       
+    }
+    .label {/*from  w  ww. ja  v  a 2  s  .  co  m*/
+       text-align: center;
+       width: 600px;
+       font-size: 20px;
+       font-weight: bold;
+       margin: 20px;
+    }
+    .chart_container {
+       float: left;
+       
+    }
+
+    #map {
+      width: 1000px ;
+      height: 800px ;
+    }
+
+    .map_container{
+      float:right;
+    }
+
+
+    
+  </style>
 </head>
 
 <body>
-  <iframe src="map.html" width="800" height="600" frameborder="0"></iframe>
-</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script> 
+  <div class="map">
+    <!-- <iframe src="map.html" width="1400" height="900" frameborder="0"></iframe> -->
+  </div>
+  <div class="chart_container">
+    <label for="city-select">Select City:</label>
+    <select id="city-select">
+      <option value="Dallas">Dallas</option>
+      <option value="SanAntonio">San Antonio</option>
+      <option value="SanDiego">San Diego</option>
+      <option value="LosAngeles">Los Angeles</option>
+      <option value="Chicago">Chicago</option>
+      <option value="NewYorkCity">New York City</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="Philadelphia">Philadelphia</option>
+      <option value="Houston">Houston</option>
+      <option value="Austin">Austin</option>
+    </select>
 
+    <label for="attraction-select">Select Attraction Type:</label>
+    <select id="attraction-select">
+      <option value="Hotels">Hotels</option>
+      <option value="Food">Food</option>
+    </select>
+
+    <canvas id="myChart1"></canvas>
+  </div>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var ctx = document.getElementById('myChart1').getContext('2d');
+
+  // Initial chart data (empty)
+  var chartData = {
+    labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+    datasets: [{
+      label: 'Reviews',
+      data: [],
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  var myChart1 = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  var citySelect = document.getElementById('city-select');
+  var attractionSelect = document.getElementById('attraction-select');
+
+  function updateChart() {
+    var selectedCity = citySelect.value;
+    var selectedAttraction = attractionSelect.value;
+
+    fetch(`JSON/${selectedCity}_${selectedAttraction}.json`)
+      .then(response => response.json())
+      .then(data => {
+        var ratings = [0, 0, 0, 0, 0]; // Initialize ratings count for 1 to 5 stars
+        data.forEach(review => {
+          var roundedRating = Math.round(review.rating); // Round rating to nearest whole number
+          if (roundedRating >= 1 && roundedRating <= 5) {
+            ratings[roundedRating - 1]++; // Update the corresponding star rating count
+          }
+        });
+
+        myChart1.data.datasets[0].data = ratings;
+        myChart1.update();
+      })
+      .catch(error => {
+        console.error('Error loading data:', error);
+      });
+  }
+
+  // Event listeners for dropdown changes
+  citySelect.addEventListener('change', updateChart);
+  attractionSelect.addEventListener('change', updateChart);
+});
+
+</script>
 </html>

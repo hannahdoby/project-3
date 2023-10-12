@@ -2,22 +2,30 @@
 from flask import Flask,jsonify
 import requests
 import json
+from jl_apiKey import api_key
+from flask_cors import CORS
 
+### Set up Flask ###
 # Create App
 app = Flask(__name__)
+CORS(app)
+
 
 # Define Route
 @app.route("/")
 
 # Call out url
 def home():
-    url = "https://api.yelp.com/v3/businesses/search?location=NYC&categories=hotels&sort_by=best_match&limit=20"
+    url = "https://api.yelp.com/v3/businesses/search?location=NYC&term=food&sort_by=best_match&limit=20"
     headers = {
     "accept": "application/json",
-    "Authorization": "Bearer CHjD6kmFOME90In-E5XCPX4j-bRFI8XTrhXpC4mSkiUPM5rEYHz0Ny_NDkuBFvliTm2yaGMLW-h4NUsjLtyakj8wgZMT48_vJQP8_RccUQ3jgR2mt6pUW9QwYmQTZXYx"}
+    "Authorization": f"Bearer {api_key}"}
+
+    location= ['NYC']
+    term = ["hotels"]
 
     try: 
-        uResponse = requests.get(url, headers=headers)
+        uResponse = requests.get(f"{url}{location}&term={term}&sort_by=best_match&limit=20", headers=headers)
     except requests.ConnectionError:
         return "Connection Error"
     Jresponse = uResponse.text
@@ -29,7 +37,7 @@ def home():
     # # the reputation 
     # businessName = data['businesses'][0]['name']
 
-    return Jresponse
+    return data
 
 if __name__ == "__main__":
     app.run(debug = True)

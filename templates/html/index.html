@@ -2,15 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project 3 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ratings by City/Attraction</title>
+  <link rel="stylesheet" href="project-3/style.css">
+  <style id="compiled-css" type="text/css">
+    
+    #map {
+      width: 1000px ;
+      height: 800px ;
+    }
+
+    .map_container{
+      float: right;
+    }
+
+
+    
+  </style>
 </head>
 
 <body>
-    <script src="{{ url_for('endpoint_to_resource') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <div class="map_container"></div>
+    <iframe src="map.html" width="1000" height="800" frameborder="0"></iframe>
+
 </body>
 
 </html>
